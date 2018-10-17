@@ -21,13 +21,23 @@ namespace Grades
 			{
 				if (!String.IsNullOrEmpty(value))
 				{
+					if (_name != value)
+					{
+						NameChangedEventArgs args = new NameChangedEventArgs();
+						args.ExistingName = Name;
+						args.NewName = value;
+						NameChanged(this, args);
+					}
 					_name = value;
 				}
 			}
 		}
+
+		public event NameChangedDelegate NameChanged;
         public GradeBook()
         {
             grades = new List<float>();
+			_name = "Empty";
         }
         public GradeStatistics ComputeStatistics()
         {
