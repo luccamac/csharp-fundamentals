@@ -16,10 +16,10 @@ namespace Grades
             CreatingFile(book);
             AddingGrades(book);
             WritingFile(book);
-            PritingResults(book);
+            PrintingResults(book);
         }
 
-        private static void PritingResults(GradeBook book)
+        private static void PrintingResults(GradeBook book)
         {
             GradeStatistics stats = book.ComputeStatistics();
             WriteResult("Average", stats.AverageGrade);
