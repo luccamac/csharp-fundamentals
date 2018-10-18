@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,29 +12,40 @@ namespace Grades
         List<float> grades;
 
 		private string _name;
-        public String Name
-		{
-			get
-			{
-				return _name;
-			}
-			set
-			{
-				if (!String.IsNullOrEmpty(value))
-				{
-					if (_name != value)
-					{
-						NameChangedEventArgs args = new NameChangedEventArgs();
-						args.ExistingName = Name;
-						args.NewName = value;
-						NameChanged(this, args);
-					}
-					_name = value;
-				}
-			}
-		}
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("Name cannot be null or empty");
+                }
 
-		public event NameChangedDelegate NameChanged;
+                if (_name != value && NameChanged != null)
+                {
+                    NameChangedEventArgs args = new NameChangedEventArgs();
+                    args.ExistingName = _name;
+                    args.NewName = value;
+
+                    NameChanged(this, args);
+                }
+                _name = value;
+            }
+        }
+
+        public void WriteGrades(TextWriter destination)
+        {
+            for (int i = grades.Count; i > 0; i--)
+            {
+                destination.WriteLine(grades[i - 1]);
+            }
+        }
+
+        public event NameChangedDelegate NameChanged;
         public GradeBook()
         {
             grades = new List<float>();
