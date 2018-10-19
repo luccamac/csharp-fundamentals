@@ -10,7 +10,6 @@ namespace Grades
     {
         public override GradeStatistics ComputeStatistics()
         {
-            Console.WriteLine("ThrowAwayGradeBook Statistics");
             float lowest = float.MaxValue;
             foreach (float grade in grades)
             {

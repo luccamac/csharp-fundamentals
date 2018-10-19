@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -26,7 +27,6 @@ namespace Grades
         }
         public override GradeStatistics ComputeStatistics()
         {
-            Console.WriteLine("GradeBook Statistics");
             GradeStatistics stats = new Grades.GradeStatistics();
             stats.HighestGrade = 0;
             float sum = 0;
@@ -43,6 +43,11 @@ namespace Grades
         public override void AddGrade(float grade)
         {
             grades.Add(grade);
+        }
+
+        public override IEnumerator GetEnumerator()
+        {
+            return grades.GetEnumerator();
         }
     }
 }

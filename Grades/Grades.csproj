@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GradeTracker.cs" />
+    <Compile Include="IGradeTracker.cs" />
     <Compile Include="ThrowAwayGradeBook.cs" />
     <Compile Include="GradeStatistics.cs" />
     <Compile Include="GradeBook.cs" />
